@@ -1,4 +1,4 @@
-version: '3.9'
+
 services:
   postgres:
     image: postgres:15
@@ -46,3 +46,13 @@ services:
       - rabbitmq
     ports:
       - "3002:3000"
+  
+  gateway-service:
+    build: ./gateway-service
+    ports:
+      - "4000:3000"
+    depends_on:
+      - user-service
+      - order-service
+
+
